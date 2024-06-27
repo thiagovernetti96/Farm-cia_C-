@@ -1,4 +1,9 @@
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using Farmácia_C_.Data;
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddDbContext<Farmácia_C_Context>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("Farmácia_C_Context") ?? throw new InvalidOperationException("Connection string 'Farmácia_C_Context' not found.")));
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
