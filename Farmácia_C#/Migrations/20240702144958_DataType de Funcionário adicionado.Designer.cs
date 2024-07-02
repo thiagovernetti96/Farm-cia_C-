@@ -4,6 +4,7 @@ using Farmácia_C_.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Farmácia_C_.Migrations
 {
     [DbContext(typeof(Farmácia_C_Context))]
-    partial class Farmácia_C_ContextModelSnapshot : ModelSnapshot
+    [Migration("20240702144958_DataType de Funcionário adicionado")]
+    partial class DataTypedeFuncionárioadicionado
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -71,9 +73,6 @@ namespace Farmácia_C_.Migrations
                     b.Property<int>("ProdutoId")
                         .HasColumnType("int");
 
-                    b.Property<int>("Quantidade")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
                     b.HasIndex("ClienteId");
@@ -93,10 +92,6 @@ namespace Farmácia_C_.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<string>("CNPJ")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -106,6 +101,10 @@ namespace Farmácia_C_.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Phone")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("RG")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -183,7 +182,7 @@ namespace Farmácia_C_.Migrations
             modelBuilder.Entity("Farmácia_C_.Models.Compra", b =>
                 {
                     b.HasOne("Farmácia_C_.Models.Cliente", "Cliente")
-                        .WithMany("Compras")
+                        .WithMany()
                         .HasForeignKey("ClienteId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -210,22 +209,12 @@ namespace Farmácia_C_.Migrations
             modelBuilder.Entity("Farmácia_C_.Models.Produto", b =>
                 {
                     b.HasOne("Farmácia_C_.Models.Fornecedor", "Fornecedor")
-                        .WithMany("Produtos")
+                        .WithMany()
                         .HasForeignKey("FornecedorID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Fornecedor");
-                });
-
-            modelBuilder.Entity("Farmácia_C_.Models.Cliente", b =>
-                {
-                    b.Navigation("Compras");
-                });
-
-            modelBuilder.Entity("Farmácia_C_.Models.Fornecedor", b =>
-                {
-                    b.Navigation("Produtos");
                 });
 #pragma warning restore 612, 618
         }

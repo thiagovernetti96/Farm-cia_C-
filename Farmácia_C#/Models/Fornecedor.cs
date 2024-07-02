@@ -10,5 +10,14 @@
 
         public string Phone { get; set; }
 
+        public string CNPJ {  get; set; }
+
+        public ICollection<Produto> Produtos { get; set; } = new List<Produto>();
+
+
+        public Fornecedor()
+        {
+            Produtos = new List<Produto>();
+        }
     }
 }

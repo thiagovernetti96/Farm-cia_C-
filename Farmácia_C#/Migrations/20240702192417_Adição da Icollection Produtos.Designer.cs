@@ -4,6 +4,7 @@ using Farmácia_C_.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Farmácia_C_.Migrations
 {
     [DbContext(typeof(Farmácia_C_Context))]
-    partial class Farmácia_C_ContextModelSnapshot : ModelSnapshot
+    [Migration("20240702192417_Adição da Icollection Produtos")]
+    partial class AdiçãodaIcollectionProdutos
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -183,7 +185,7 @@ namespace Farmácia_C_.Migrations
             modelBuilder.Entity("Farmácia_C_.Models.Compra", b =>
                 {
                     b.HasOne("Farmácia_C_.Models.Cliente", "Cliente")
-                        .WithMany("Compras")
+                        .WithMany()
                         .HasForeignKey("ClienteId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -216,11 +218,6 @@ namespace Farmácia_C_.Migrations
                         .IsRequired();
 
                     b.Navigation("Fornecedor");
-                });
-
-            modelBuilder.Entity("Farmácia_C_.Models.Cliente", b =>
-                {
-                    b.Navigation("Compras");
                 });
 
             modelBuilder.Entity("Farmácia_C_.Models.Fornecedor", b =>

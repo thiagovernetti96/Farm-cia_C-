@@ -4,6 +4,7 @@ using Farmácia_C_.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Farmácia_C_.Migrations
 {
     [DbContext(typeof(Farmácia_C_Context))]
-    partial class Farmácia_C_ContextModelSnapshot : ModelSnapshot
+    [Migration("20240702195255_Criação do Icollection no model Cliente")]
+    partial class CriaçãodoIcollectionnomodelCliente
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

@@ -61,10 +61,19 @@ namespace Farmácia_C_.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,ClienteId,FuncionarioId,ProdutoId")] Compra compra)
+        public async Task<IActionResult> Create([Bind("Id,ClienteId,FuncionarioId,ProdutoId,Quantidade")] Compra compra)
         {
-            if (ModelState.IsValid)
+            var produto = _context.Produto.FirstOrDefault(p => p.Id == compra.ProdutoId);
+
+            if (produto.Quantidade < compra.Quantidade )
             {
+                return BadRequest("Quantidade insuficiente no estoque");
+            }
+            if ( produto.Quantidade >= compra.Quantidade)
+            {
+                produto.Quantidade -= compra.Quantidade;
+               
+                _context.Update(produto);
                 _context.Add(compra);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -99,7 +108,7 @@ namespace Farmácia_C_.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,ClienteId,FuncionarioId,ProdutoId")] Compra compra)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,ClienteId,FuncionarioId,ProdutoId,Quantidade")] Compra compra)
         {
             if (id != compra.Id)
             {
