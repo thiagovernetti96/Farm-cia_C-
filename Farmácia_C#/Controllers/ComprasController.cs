@@ -50,9 +50,9 @@ namespace Farmácia_C_.Controllers
         // GET: Compras/Create
         public IActionResult Create()
         {
-            ViewData["ClienteId"] = new SelectList(_context.Cliente, "Id", "Id");
-            ViewData["FuncionarioId"] = new SelectList(_context.Funcionario, "Id", "Id");
-            ViewData["ProdutoId"] = new SelectList(_context.Produto, "Id", "Id");
+            ViewData["ClienteId"] = new SelectList(_context.Cliente, "Id", "Name");
+            ViewData["FuncionarioId"] = new SelectList(_context.Funcionario, "Id", "Name");
+            ViewData["ProdutoId"] = new SelectList(_context.Produto, "Id", "Nome");
             return View();
         }
 
