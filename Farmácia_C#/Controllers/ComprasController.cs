@@ -97,9 +97,9 @@ namespace Farmácia_C_.Controllers
             {
                 return NotFound();
             }
-            ViewData["ClienteId"] = new SelectList(_context.Cliente, "Id", "Id", compra.ClienteId);
-            ViewData["FuncionarioId"] = new SelectList(_context.Funcionario, "Id", "Id", compra.FuncionarioId);
-            ViewData["ProdutoId"] = new SelectList(_context.Produto, "Id", "Id", compra.ProdutoId);
+            ViewData["ClienteId"] = new SelectList(_context.Cliente, "Id", "Name", compra.ClienteId);
+            ViewData["FuncionarioId"] = new SelectList(_context.Funcionario, "Name", "Id", compra.FuncionarioId);
+            ViewData["ProdutoId"] = new SelectList(_context.Produto, "Id", "Nome", compra.ProdutoId);
             return View(compra);
         }
 

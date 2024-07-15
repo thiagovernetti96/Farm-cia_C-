@@ -48,7 +48,7 @@ namespace Farmácia_C_.Controllers
         // GET: Produtos/Create
         public IActionResult Create()
         {
-            ViewData["FornecedorID"] = new SelectList(_context.Fornecedor, "Id", "Id");
+            ViewData["FornecedorID"] = new SelectList(_context.Fornecedor, "Id", "Name");
             return View();
         }
 
@@ -92,7 +92,7 @@ namespace Farmácia_C_.Controllers
             {
                 return NotFound();
             }
-            ViewData["FornecedorID"] = new SelectList(_context.Fornecedor, "Id", "Id", produto.FornecedorID);
+            ViewData["FornecedorID"] = new SelectList(_context.Fornecedor, "Id", "Name", produto.FornecedorID);
             return View(produto);
         }
 
