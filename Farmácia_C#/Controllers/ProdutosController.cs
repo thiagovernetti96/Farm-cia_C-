@@ -22,7 +22,7 @@ namespace Farmácia_C_.Controllers
         // GET: Produtos
         public async Task<IActionResult> Index()
         {
-            var farmácia_C_Context = _context.Produto.Include(p => p.Fornecedor);
+            var farmácia_C_Context = _context.Produto.Include("Fornecedor");
             return View(await farmácia_C_Context.ToListAsync());
         }
 

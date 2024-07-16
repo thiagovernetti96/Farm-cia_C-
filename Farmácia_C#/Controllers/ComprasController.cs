@@ -22,7 +22,8 @@ namespace Farmácia_C_.Controllers
         // GET: Compras
         public async Task<IActionResult> Index()
         {
-            var farmácia_C_Context = _context.Compra.Include(c => c.Cliente).Include(c => c.Funcionario).Include(c => c.Produto);
+    
+            var farmácia_C_Context = _context.Compra.Include("Funcionario").Include("Produto").Include("Cliente");
             return View(await farmácia_C_Context.ToListAsync());
         }
 
@@ -35,9 +36,9 @@ namespace Farmácia_C_.Controllers
             }
 
             var compra = await _context.Compra
-                .Include(c => c.Cliente)
-                .Include(c => c.Funcionario)
-                .Include(c => c.Produto)
+                .Include("Funcionario")
+                .Include("Produto")
+                .Include("Cliente")
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (compra == null)
             {
