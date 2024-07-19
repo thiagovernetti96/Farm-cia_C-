@@ -35,8 +35,12 @@ namespace Farmácia_C_.Controllers
                 return NotFound();
             }
 
-            var cliente = await _context.Cliente.Include(c=>c.Compras)
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var cliente = await _context.Cliente
+           .Include(c => c.Compras)
+               .ThenInclude(c => c.Funcionario)
+           .Include(c => c.Compras)
+               .ThenInclude(c => c.Produto)
+           .FirstOrDefaultAsync(m => m.Id == id);
             if (cliente == null)
             {
                 return NotFound();

@@ -62,8 +62,8 @@
                 @foreach (var produto in Model.Compras)
                 {
                     <tr>
-                        <td>@produto.FuncionarioId</td>
-                        <td>@produto.ProdutoId</td>
+                        <td>@produto.Funcionario?.Name</td>
+                        <td>@produto.Produto?.Nome</td>
                         <td>@produto.Quantidade</td>
                     </tr>
                 }
